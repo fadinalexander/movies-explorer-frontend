@@ -1,10 +1,51 @@
 .header {
+    padding: 0 70px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 74px;
 }
 
-.header__logoImage {
+.header__route-home {}
+
+.header__logo {
     width: 38px;
+}
+
+.header__buttons {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.header__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    min-width: 76px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+.header__buttons_authorized {
+    gap: 16px;
+}
+
+.header__button_authorized {
+    min-width: auto;
+}
+
+.header__button:hover {
+    opacity: .7;
+}
+
+.header__button_green {
+    color: #000;
+    background-color: #3ddc84;
+    border-radius: 3px;
 }
