@@ -1,3 +1,3 @@
 # movies-explorer-frontend
 
-Макет figma - dark2
+Макет: figma - dark2

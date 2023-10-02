@@ -4,17 +4,17 @@ import '../FormPage/FormPage.css'
 import FormPage from '../FormPage/FormPage'
 import { Link } from 'react-router-dom';
 
-function Register () {
+function Register() {
     return (
-            <FormPage
-                title='Добро пожаловать!'
-                buttonText= {
-                    <Link to='/signin'>Зарегестрироваться</Link>
-                }
-                beforeLinkQuestion='Уже зарегистрированы?'
-                link='/signin'
-                linkText='Войти'
-            >
+        <FormPage
+            title='Добро пожаловать!'
+            buttonText={
+                <Link to='/signin'>Зарегестрироваться</Link>
+            }
+            beforeLinkQuestion='Уже зарегистрированы?'
+            link='/signin'
+            linkText='Войти'
+        >
             <label className='label'>
                 Имя
                 <input
@@ -52,7 +52,7 @@ function Register () {
                     placeholder='Пароль'
                 />
             </label>
-            </FormPage>
+        </FormPage>
     )
 }
 

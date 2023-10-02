@@ -72,10 +72,37 @@
     border: none;
     background-color: inherit;
     color: #ee3465;
-    transition: all .2s ease-in-out;  
-    cursor: pointer;        
+    transition: all .2s ease-in-out;
+    cursor: pointer;
 }
 
 .profile__button-exit:hover {
     opacity: .8;
+}
+
+
+@media screen and (max-width: 420px) {
+    .profile {
+        padding: 70px 0 70px;
+    }
+
+    .profile__title {
+        margin-bottom: 80px;
+    }
+
+    .profile__form-container {
+        margin: 0 30px;
+    }
+
+    .profile__button-edit {
+        margin-top: 379px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .profile__button-exit {
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
 }

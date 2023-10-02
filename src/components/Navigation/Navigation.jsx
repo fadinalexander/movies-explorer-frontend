@@ -1,48 +1,76 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, Link } from 'react-router-dom'
+import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
+
 import './Navigation.css'
+import accountBtn from '../../images/account_btn.svg'
+import usePageSize from '../../hooks/usePageSize'
 
-const Navigation = ({ isLoggedIn }) => {
-    const location = useLocation()
-    const [pageSize, setPageSize] = useState(
-        {
-            with: window.innerWidth,
-            height: window.innerHeight
-        }
-    )
+const Navigation = ({ isLoggedIn, onLinkClick }) => {
 
-    useEffect(() => {
-        const resizeHandler = () => {
-            setPageSize(
-                {
-                    with: window.innerWidth,
-                    height: window.innerHeight
-                }
-            )
-        }
+    const pageWidth = usePageSize()
 
-        window.addEventListener('resize', resizeHandler)
-
-        return () => {
-            window.removeEventListener('resize', resizeHandler)
-        }
-    }, [])
+    const toggleClassNameNavigation = pageWidth.width <= 768 ? 'navigation_popup' : 'navigation'
+    const toggleClassNameMovie = pageWidth.width <= 768 ? 'navigation__movies-popup' : 'navigation__movies'
+    const toggleClassNameLink = pageWidth.width <= 768 ? 'navigation__popup' : 'navigation__header'
 
     return (
-        <nav className='navigation'>
+        <>
             { isLoggedIn
                 ? (
-                    <>
-                        
-                    </>
-                )
-                : (
-                    <>
-                    </>
+                    <nav className={ toggleClassNameNavigation } id='navigation'>
+
+                        <div className={ toggleClassNameMovie }>
+                            <NavLink
+                                to='/'
+                                className={ ({ isActive }) => `${toggleClassNameLink} navigation__header-mainPage ${isActive ? 'navigation__link_active' : ''}` }
+                                onClick={ onLinkClick }
+                            >
+                                Главная
+                            </NavLink>
+                            <NavLink
+                                to='/movies'
+                                className={ ({ isActive }) => `${toggleClassNameLink} ${isActive ? 'navigation__link_active' : ''}` }
+                                onClick={ onLinkClick }
+                            >
+                                Фильмы
+                            </NavLink>
+                            <NavLink
+                                to='/saved-movies'
+                                className={ ({ isActive }) => `${toggleClassNameLink} ${isActive ? 'navigation__link_active' : ''}` }
+                                onClick={ onLinkClick }
+                            >
+                                Сохранённые фильмы
+                            </NavLink>
+                        </div>
+
+                        <Link
+                            to='/profile'
+                            className='navigation__isLoggedIn-profile'
+                            onClick={ onLinkClick }
+                        >
+                            <img src={ accountBtn } alt="Иконка аккаунта" />
+                        </Link>
+                    </nav >
+                ) : (
+                    <nav className='navigation' id='navigation'>
+                        <div className='navigation__landing'>
+                            <Link
+                                className='navigation__landing-link'
+                                to='/signup'
+                            >
+                                Регистрация
+                            </Link>
+                            <Link
+                                to='/signin'
+                                className='navigation__landing-link navigation__landing-link_green'
+                            >
+                                Войти
+                            </Link>
+                        </div>
+                    </nav>
                 )
             }
-
-        </nav>
+        </>
     )
 }
 

@@ -21,3 +21,15 @@
 .navTab__link:hover {
     opacity: .8;
 }
+
+@media screen and (max-width: 320px) {
+    .navTab {
+        margin-bottom: 17px;
+        gap: 6px;
+    }
+
+    .navTab__link {
+        width: 82px;
+        border-radius: 6px;
+    }
+}

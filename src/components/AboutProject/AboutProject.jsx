@@ -40,8 +40,6 @@ const AboutProject = () => {
                 <p className='about-project__fill'>Front-end</p>
 
             </div>
-
-
         </section>
     )
 }

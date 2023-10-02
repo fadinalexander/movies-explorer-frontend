@@ -7,7 +7,8 @@
 }
 
 .formPage__logo {
-transition: all .2s ease-in-out;}
+    transition: all .2s ease-in-out;
+}
 
 .formPage__logo:hover {
     opacity: .7;
@@ -95,4 +96,38 @@ transition: all .2s ease-in-out;}
 
 .formPage__link:hover {
     opacity: .7;
+}
+
+
+@media screen and (max-width: 420px) {
+    .formPage {
+        align-items: center;
+        padding: 56px 0 30px;
+    }
+
+    .formPage__title {
+        padding: 50px 0 80px;
+    }
+
+    .form {
+        padding: 0 30px;
+        min-height: 380px;
+        width: 100%;
+    }
+
+    .formPage__button-save {
+        margin-top: 179px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .formPage__beforeLink-question {
+        padding-top: 14px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .formPage__link {
+        font-size: 12px;
+    }
 }

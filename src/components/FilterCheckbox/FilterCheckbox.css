@@ -56,3 +56,15 @@
     line-height: 18px;
     margin-left: 12px;
 }
+
+@media screen and (max-width: 887px) {
+    .filterCheckbox {
+        margin-top: 40px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .filterCheckbox {
+        margin-top: 47px;
+    }
+}
