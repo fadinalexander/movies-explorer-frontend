@@ -1,0 +1,142 @@
+.formPage {
+    display: flex;
+    flex-direction: column;
+    max-width: 396px;
+    margin: 0 auto;
+    padding: 70px 0;
+}
+
+.formPage__logo {
+    transition: all .2s ease-in-out;
+}
+
+.formPage__logo:hover {
+    opacity: .7;
+}
+
+.formPage__title {
+    padding: 40px 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 29.05px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    min-height: 380px;
+    width: 100%;
+}
+
+.formPage__button-save-Link {
+    margin-top: auto;
+    text-decoration: none;
+}
+
+.formPage__button-save {
+    width: 100%;
+    height: 45px;
+    background-color: #4285f4;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 3px;
+    border: none;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16.94px;
+    transition: all .2s ease-in-out;
+}
+
+.formPage__button-save:hover {
+    opacity: .7;
+}
+
+.label {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: #8b8b8b;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 12.1px;
+    margin-bottom: 20px;
+}
+
+.label:last-of-type {
+    margin-bottom: 0;
+}
+
+.form__input {
+    margin: 10px 0 0;
+    height: 46px;
+    padding: 15px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #2f2f2f;
+    outline: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 15.73px;
+}
+
+.form__input:focus {
+    border: 1px solid #fff;
+}
+
+.formPage__beforeLink-question {
+    padding-top: 16px;
+    color: #8b8b8b;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-align: center;
+}
+
+.formPage__link {
+    color: #4285f4;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.94px;
+    text-decoration: none;
+    padding-left: 6px;
+    transition: all .2s ease-in-out;
+}
+
+.formPage__link:hover {
+    opacity: .7;
+}
+
+
+@media screen and (max-width: 420px) {
+    .formPage {
+        align-items: center;
+        padding: 56px 0 30px;
+    }
+
+    .formPage__title {
+        padding: 50px 0 80px;
+    }
+
+    .form {
+        padding: 0 30px;
+        min-height: 380px;
+        width: 100%;
+    }
+
+    .formPage__button-save {
+        margin-top: 179px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .formPage__beforeLink-question {
+        padding-top: 14px;
+        font-size: 12px;
+        line-height: 14.52px;
+    }
+
+    .formPage__link {
+        font-size: 12px;
+    }
+}

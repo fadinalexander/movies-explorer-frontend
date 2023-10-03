@@ -1,0 +1,132 @@
+.about-project {
+    margin: 110px 70px;
+}
+
+.about-project__title {
+    margin: 0 0 23px;
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 26.63px;
+    letter-spacing: -.04em;
+}
+
+.about-project__hr {
+    margin: 0;
+    height: 1px;
+    border: none;
+    background-color: #dadada;
+}
+
+.about-project__list-container {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    margin: 48px 0 97px;
+    padding: 0;
+}
+
+.about-project__list {
+    max-width: 550px;
+}
+
+.about-project__list_title {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 24.2px;
+    letter-spacing: -.04em;
+    margin-bottom: 26px;
+}
+
+.about-project__list_description {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.about-project__timeLine {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+}
+
+.about-project__fill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 17px;
+    color: #8b8b8b;
+}
+
+.about-project__fill_green {
+    background-color: #3ddc84;
+    color: #000;
+    font-weight: 400;
+}
+
+.about-project__fill_grey {
+    background-color: #303030;
+    color: #fff;
+    font-weight: 400;
+}
+
+
+@media screen and (max-width: 768px) {
+    .about-project {
+        margin: 90px 50px;
+    }
+
+    .about-project__list-container {
+        margin: 70px 0 93px;
+        gap: 30px;
+    }
+
+    .about-project__list_title {
+        margin-bottom: 22px;
+    }
+
+    .about-project__list_description {
+        font-size: 12px;
+        line-height: 18px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .about-project {
+        margin: 70px 18px;
+    }
+
+    .about-project__title {
+        margin: 0 0 28px;
+        font-size: 18px;
+        line-height: 21.78px;
+    }
+
+    .about-project__list-container {
+        flex-direction: column;
+        gap: 56px;
+        margin: 60px 0;
+    }
+
+    .about-project__list_title {
+        font-size: 18px;
+        line-height: 21.78px;
+        margin-bottom: 16px;
+    }
+
+    .about-project__list_description {
+        font-size: 11px;
+        line-height: 16px;
+    }
+
+    .about-project__fill {
+        height: 35px;
+        margin: 0;
+        font-size: 11px;
+        font-weight: 400;
+        line-height: 13.31px;
+    }
+    
+}
