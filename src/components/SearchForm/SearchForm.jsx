@@ -18,7 +18,7 @@ const SearchForm = () => {
                     placeholder='Фильм'
                 >
                 </input>
-                <button className='searchForm__btn' type='submit' />
+                <button className='searchForm__btn' type='submit' alt='Кнопка'></button>
             </form>
             <FilterCheckbox />
             <hr className='searchForm__hr' />

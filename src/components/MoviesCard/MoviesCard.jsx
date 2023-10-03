@@ -4,7 +4,7 @@ import getDuration from '../../utils/getDuration'
 import './MoviesCard.css'
 const MoviesCard = ({ movie }) => {
 
-    const moviesCardLikeClassName = `${movie.isLiked ? 'moviesCard__btn-save_active' : 'moviesCard__btn-save'}`
+    const moviesCardLikeClassName = `${movie.isLiked ? 'moviesCard__btn-save moviesCard__btn-save_active' : 'moviesCard__btn-save'}`
     return (
         <li className='moviesCard'>
             <img

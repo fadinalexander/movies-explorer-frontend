@@ -52,7 +52,7 @@
 }
 
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 460px) {
     .footer {
         max-height: min-content;
         padding: 79px 10px 0;

@@ -119,56 +119,6 @@
 
 @media screen and (max-width: 460px) {
     .about-me {
-        padding: 70px 50px 0;
-    }
-
-    .about-me__title {
-        margin: 0 0 28px;
-        font-size: 18px;
-        line-height: 21.78px;
-    }
-
-    .about-me__container {
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: center;
-        margin-top: 60px;
-        gap: 40px;
-        max-height: fit-content;
-    }
-
-    .about-me__photo {
-        display: flex;
-        width: calc(100vw -40px);
-        border-radius: 10px;
-        object-fit: contain;
-    }
-
-    .about-me__info-name {
-        font-size: 30px;
-        line-height: 36.31px;
-    }
-
-    .about-me__info-description {
-        margin: 20px 0 0;
-        font-size: 11px;
-        line-height: 16px;
-    }
-
-    .about-me__info-about {
-        margin: 20px 0 0;
-        font-size: 11px;
-        line-height: 16px;
-    }
-
-    .about-me__github-link {
-        margin-top: 40px;
-    }
-}
-
-
-@media screen and (max-width: 320px) {
-    .about-me {
         padding: 70px 14px 0;
     }
 

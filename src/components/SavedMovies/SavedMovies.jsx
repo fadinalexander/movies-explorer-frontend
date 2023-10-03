@@ -13,10 +13,12 @@ const SavedMovies = ({ isLoggedIn }) => {
     return (
         <>
             <Header isLoggedIn={ isLoggedIn } />
-            <section className='saved-movies'>
-                <SearchForm />
-                <MoviesCardList movies={ likedMovies } />
-            </section>
+            <main>
+                <section className='saved-movies'>
+                    <SearchForm />
+                    <MoviesCardList movies={ likedMovies } />
+                </section>
+            </main>
             <Footer />
         </>
     )

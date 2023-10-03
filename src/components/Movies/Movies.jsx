@@ -11,13 +11,15 @@ const Movies = ({ isLoggedIn }) => {
     return (
         <>
             <Header isLoggedIn={ isLoggedIn } />
-            <section className='movies'>
-                <SearchForm />
-                <MoviesCardList movies={ data } />
-                <div className='movies__button-container'>
-                    <button className='movies__button-else'>Ещё</button>
-                </div>
-            </section>
+            <main>
+                <section className='movies'>
+                    <SearchForm />
+                    <MoviesCardList movies={ data } />
+                    <div className='movies__button-container'>
+                        <button className='movies__button-else'>Ещё</button>
+                    </div>
+                </section>
+            </main>
             <Footer />
         </>
     )

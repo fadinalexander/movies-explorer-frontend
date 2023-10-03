@@ -22,21 +22,21 @@ const Navigation = ({ isLoggedIn, onLinkClick }) => {
                         <div className={ toggleClassNameMovie }>
                             <NavLink
                                 to='/'
-                                className={ ({ isActive }) => `${toggleClassNameLink} navigation__header-mainPage ${isActive ? 'navigation__link_active' : ''}` }
+                                className={ ({ isActive }) => `${toggleClassNameLink} navigation__header-mainPage ${isActive ? 'navigation__link-active' : ''}` }
                                 onClick={ onLinkClick }
                             >
                                 Главная
                             </NavLink>
                             <NavLink
                                 to='/movies'
-                                className={ ({ isActive }) => `${toggleClassNameLink} ${isActive ? 'navigation__link_active' : ''}` }
+                                className={ ({ isActive }) => `${toggleClassNameLink} ${isActive ? 'navigation__link-active' : ''}` }
                                 onClick={ onLinkClick }
                             >
                                 Фильмы
                             </NavLink>
                             <NavLink
                                 to='/saved-movies'
-                                className={ ({ isActive }) => `${toggleClassNameLink} ${isActive ? 'navigation__link_active' : ''}` }
+                                className={ ({ isActive }) => `${toggleClassNameLink} ${isActive ? 'navigation__link-active' : ''}` }
                                 onClick={ onLinkClick }
                             >
                                 Сохранённые фильмы

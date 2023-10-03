@@ -1,20 +1,18 @@
 import React from 'react';
 
-import '../FormPage/FormPage.css'
+import './Login.css'
 import FormPage from '../FormPage/FormPage'
-import { Link } from 'react-router-dom';
 
 function Login() {
 
     return (
         <FormPage
             title='Рады видеть!'
-            buttonText={
-                <Link to='/movies'>Войти</Link>
-            }
+            buttonText='Войти'
             beforeLinkQuestion='Ещё не зарегистрированы?'
             link='/signup'
             linkText='Регистрация'
+            buttonLink='/movies'
         >
             <label className='label'>
                 E-mail

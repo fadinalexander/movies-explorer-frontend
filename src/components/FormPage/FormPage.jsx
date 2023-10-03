@@ -10,7 +10,8 @@ function FormPage({
   buttonText,
   beforeLinkQuestion,
   link,
-  linkText
+  linkText,
+  buttonLink
 }) {
   return (
     <section className='formPage'>
@@ -26,9 +27,13 @@ function FormPage({
         id='form'
       >
         { children }
-        <button className='formPage__button-save' type='submit'>
-          { buttonText }
-        </button>
+
+        <Link className='formPage__button-save-Link' to={ buttonLink }>
+          <button className='formPage__button-save' type='submit'>
+            { buttonText }
+          </button>
+        </Link>
+
       </form>
       <p className='formPage__beforeLink-question'>
         { beforeLinkQuestion }

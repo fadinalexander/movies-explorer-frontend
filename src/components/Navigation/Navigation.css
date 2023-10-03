@@ -97,7 +97,7 @@
 
 @media screen and (max-width: 768px) {
 
-    .navigation__link_active {        
+    .navigation__link-active {        
         border-bottom: 2px solid #fff;
         height: 25.78px;
     }
@@ -111,7 +111,7 @@
     }
 
     
-    @media screen and (max-width: 320px) {
+    @media screen and (max-width: 460px) {
         .navigation__landing {
             gap: 14px;
         }
@@ -125,6 +125,4 @@
             height: 26px;
         }
     }
-
-
 }
