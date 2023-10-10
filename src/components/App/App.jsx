@@ -6,7 +6,6 @@ import CurrentUserContext from '../../contexts/CurrentUserContext'
 
 import mainApi from '../../utils/MainApi'
 import moviesApi from '../../utils/MoviesApi'
-import * as appAuth from '../../utils/appAuth'
 
 import './App.css'
 
@@ -62,7 +61,8 @@ const App = () => {
         if (res.token)
         {
           setIsLoggedIn(true)
-          checkToken()
+          // setIsLoading(false)
+          // checkToken()
           navigate('/movies', { replace: true })
         }
       })

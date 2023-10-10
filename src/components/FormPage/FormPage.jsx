@@ -26,16 +26,16 @@ function FormPage({
         action=''
         method=''
         id='form'
-    
+
         onSubmit={ handleSubmit }
       >
         { children }
 
-        <Link className='formPage__button-save-Link' to={ buttonLink }>
+        {/* <Link className='formPage__button-save-Link' to={ buttonLink }> */}
           <button className='formPage__button-save' type='submit'>
             { buttonText }
           </button>
-        </Link>
+        {/* </Link> */}
 
       </form>
       <p className='formPage__beforeLink-question'>
