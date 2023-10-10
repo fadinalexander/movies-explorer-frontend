@@ -11,7 +11,8 @@ function FormPage({
   beforeLinkQuestion,
   link,
   linkText,
-  buttonLink
+  buttonLink,
+  handleSubmit
 }) {
   return (
     <section className='formPage'>
@@ -25,6 +26,8 @@ function FormPage({
         action=''
         method=''
         id='form'
+    
+        onSubmit={ handleSubmit }
       >
         { children }
 

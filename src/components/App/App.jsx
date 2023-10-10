@@ -1,94 +1,184 @@
-import React from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import React, { useCallback, useEffect, useState } from 'react'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import CurrentUserContext from '../../contexts/CurrentUserContext'
+
+import mainApi from '../../utils/MainApi'
+import moviesApi from '../../utils/MoviesApi'
+import * as appAuth from '../../utils/appAuth'
 
 import './App.css'
+
+import InfoToolTip from '../InfoToolTip/InfoToolTip'
+import Preloader from '../Preloader/Preloader'
+import NotFoundPage from '../NotFoundPage/NotFoundPage'
+
 import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
 import Main from '../Main/Main'
+import Footer from '../Footer/Footer'
+
 import Movies from '../Movies/Movies'
 import SavedMovies from '../SavedMovies/SavedMovies'
 import Profile from '../Profile/Profile'
 import Register from '../Register/Register'
 import Login from '../Login/Login'
-import NotFoundPage from '../NotFoundPage/NotFoundPage'
 
 const App = () => {
+
   const location = useLocation()
+  const navigate = useNavigate()
+  const currentPath = location.pathname
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [currentUser, setCurrentUser] = useState({})
+
+  const [isLoading, setIsLoading] = useState(false)
 
 
-  const isLoggedIn = location.pathname === '/' ? false : true
-  // const isLoggedIn = true
+  const handleRegister = ({ name, email, password }) => {
+    setIsLoading(true)
+    mainApi
+      .register({ name, email, password })
+      .then(() => {
+        handleLogin({ email, password })
+        navigate('/movies')
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const handleLogin = ({ email, password }) => {
+    setIsLoading(true)
+    if (!email || !password)
+    {
+      return
+    }
+    mainApi
+      .login(email, password)
+      .then((res) => {
+        console.log(res)
+        if (res.token)
+        {
+          setIsLoggedIn(true)
+          checkToken()
+          navigate('/movies', { replace: true })
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+
+  const checkToken = useCallback(() => {
+    if (document.cookie.includes('jwt'))
+    {
+      mainApi
+        .getUser()
+        .then((res) => {
+          setIsLoggedIn(true)
+          setCurrentUser(res)
+          navigate(currentPath, { replace: true })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    }
+  }, [])
+   
+  useEffect(() => {
+    checkToken()
+  }, [isLoggedIn])
 
 
   return (
-    <div className='page'>
-      <div className='page__container'>
-        <Routes>
+    <CurrentUserContext.Provider value={ { currentUser } }>
+      <div className='page'>
+        <div className='page__container'>
 
-          <Route path='*' element={ <NotFoundPage /> } />
+          { isLoading
+            ? (
+              <Preloader />
+            )
+            : (
+              <Routes>
 
-          <Route
-            path='/'
-            element={
-              <>
-                <Header isLoggedIn={ isLoggedIn } />
-                <Main />
-                <Footer />
-              </>
-            }
-          />
+                <Route path='*' element={ <NotFoundPage /> } />
 
-          <Route
-            path='/signup'
-            element={
-              (<Register />)
-            }
-          />
+                <Route
+                  path='/'
+                  element={
+                    <>
+                      <Header isLoggedIn={ isLoggedIn } />
+                      <Main />
+                      <Footer />
+                    </>
+                  }
+                />
 
-          <Route
-            path='/signin'
-            element={
-              (<Login />)
-            }
-          />
+                <Route
+                  path='/signup'
+                  element={
+                    (<Register
+                      handleRegister={ handleRegister }
+                      isLoggedIn={isLoggedIn}
+                      isLoading={isLoading}
+                    />)
+                  }
+                />
 
-          <Route
-            path='/movies'
-            element={
-              <ProtectedRoute
-                path='/movies'
-                element={ Movies }
-                isLoggedIn={ isLoggedIn }
-              />
-            }
-          />
+                <Route
+                  path='/signin'
+                  element={
+                    (<Login
+                      handleLogin={ handleLogin }
+                      isLoggedIn={isLoggedIn}
+                      isLoading={isLoading}
+                    />)
+                  }
+                />
 
-          <Route
-            path='/saved-movies'
-            element={
-              <ProtectedRoute
-                path='/saved-movies'
-                element={ SavedMovies }
-                isLoggedIn={ isLoggedIn }
-              />
-            }
-          />
+                <Route
+                  path='/movies'
+                  element={
+                    <ProtectedRoute
+                      path='/movies'
+                      element={ Movies }
+                      isLoggedIn={ isLoggedIn }
+                    />
+                  }
+                />
 
-          <Route
-            path='/profile'
-            element={
-              <ProtectedRoute
-                path='/profile'
-                element={ Profile }
-                isLoggedIn={ isLoggedIn }
-              />
-            }
-          />
+                <Route
+                  path='/saved-movies'
+                  element={
+                    <ProtectedRoute
+                      path='/saved-movies'
+                      element={ SavedMovies }
+                      isLoggedIn={ isLoggedIn }
+                    />
+                  }
+                />
 
-        </Routes>
+                <Route
+                  path='/profile'
+                  element={
+                    <ProtectedRoute
+                      path='/profile'
+                      element={ Profile }
+                      isLoggedIn={ isLoggedIn }
+                    />
+                  }
+                />
+
+              </Routes>
+            )
+          }
+        </div>
       </div>
-    </div>
+    </CurrentUserContext.Provider>
   )
 }
 

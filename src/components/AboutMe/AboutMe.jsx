@@ -12,7 +12,9 @@ const AboutMe = () => {
             <hr className='about-me__hr' />
             <div className='about-me__container'>
                 <div className='about-me__info'>
-                    <p className='about-me__info-name'>Александр</p>
+                    <p className='about-me__info-name'>
+                        Александр
+                    </p>
                     <p className='about-me__info-description'>
                         Фронтенд-разработчик, 31&nbsp;год
                     </p>
@@ -35,7 +37,11 @@ const AboutMe = () => {
 
                 </div>
                 <div className='about-me__photo-container'>
-                    <img className='about-me__photo'src={ myPhoto } alt="Фото студента" />
+                    <img
+                        className='about-me__photo'
+                        src={ myPhoto }
+                        alt="Фото студента"
+                    />
                 </div>
             </div>
         </section>

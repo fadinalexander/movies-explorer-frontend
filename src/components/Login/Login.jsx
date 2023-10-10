@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Login.css'
 import FormPage from '../FormPage/FormPage'
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Login({ handleLogin }) {
+    const navigate = useNavigate()
+
+    const [formValue, setFormValue] = useState({
+        email: "",
+        password: ""
+    })
+
+    const handleChange = (evt) => {
+        const {name, value} = evt.target
+        setFormValue({
+            ...formValue,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault()
+        handleLogin({email, password})
+    }
+
+    const {password, email} = formValue
 
     return (
         <FormPage
@@ -13,6 +35,7 @@ function Login() {
             link='/signup'
             linkText='Регистрация'
             buttonLink='/movies'
+            handleSubmit={handleSubmit}
         >
             <label className='label'>
                 E-mail
@@ -23,6 +46,7 @@ function Login() {
                     className='form__input'
                     type='email'
                     placeholder='Ваш email'
+                    onChange={handleChange}
                 />
             </label>
             <label className='label'>
@@ -36,6 +60,7 @@ function Login() {
                     minLength='2'
                     maxLength='40'
                     placeholder='Пароль'
+                    onChange={handleChange}
                 />
             </label>
         </FormPage>

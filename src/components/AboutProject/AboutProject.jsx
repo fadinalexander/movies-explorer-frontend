@@ -9,7 +9,6 @@ const AboutProject = () => {
             <h2 className='about-project__title'>
                 О проекте
             </h2>
-
             <hr className='about-project__hr' />
 
             <ul className='about-project__list-container'>
@@ -38,7 +37,6 @@ const AboutProject = () => {
                 <p className='about-project__fill about-project__fill_grey'>4&nbsp;недели</p>
                 <p className='about-project__fill'>Back-end</p>
                 <p className='about-project__fill'>Front-end</p>
-
             </div>
         </section>
     )

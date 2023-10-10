@@ -1,9 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import * as appAuth from '../../utils/appAuth'
 
 import '../FormPage/FormPage.css'
+
 import FormPage from '../FormPage/FormPage'
 
-function Register() {
+
+
+function Register({ handleRegister }) {
+
+    const [formValue, setFormValue] = useState({
+        name: "",
+        email: "",
+        password: ""
+    })
+
+    const {name, email, password} = formValue
+
+    const handleChange = (evt) => {
+        const {name, value} = evt.target
+        setFormValue({
+            ...formValue,
+            [name]: value
+        })
+    }
+
+    const handleSubmit = (evt) => {
+        evt.preventDefault()
+       handleRegister(formValue)        
+    }
+
+
     return (
         <FormPage
             title='Добро пожаловать!'
@@ -12,6 +40,8 @@ function Register() {
             link='/signin'
             linkText='Войти'
             buttonLink='/signin'
+
+            handleSubmit={handleSubmit}
         >
             <label className='label'>
                 Имя
@@ -24,6 +54,8 @@ function Register() {
                     minLength='2'
                     maxLength='40'
                     placeholder='Ваше имя'
+
+                    onChange = {handleChange}
                 />
             </label>
             <label className='label'>
@@ -35,6 +67,8 @@ function Register() {
                     className='form__input'
                     type='email'
                     placeholder='Ваш email'
+
+                    onChange={handleChange}
                 />
             </label>
             <label className='label'>
@@ -48,6 +82,8 @@ function Register() {
                     minLength='2'
                     maxLength='40'
                     placeholder='Пароль'
+
+                    onChange={handleChange}
                 />
             </label>
         </FormPage>
