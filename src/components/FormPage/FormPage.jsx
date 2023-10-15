@@ -7,12 +7,11 @@ import logoImage from '../../images/logoImage.svg'
 function FormPage({
   title,
   children,
-  buttonText,
   beforeLinkQuestion,
   link,
   linkText,
-  buttonLink,
-  handleSubmit
+  handleSubmit,
+  errorMessage
 }) {
   return (
     <section className='formPage'>
@@ -31,13 +30,8 @@ function FormPage({
       >
         { children }
 
-        {/* <Link className='formPage__button-save-Link' to={ buttonLink }> */}
-          <button className='formPage__button-save' type='submit'>
-            { buttonText }
-          </button>
-        {/* </Link> */}
-
       </form>
+      {errorMessage && <span className='formPage__error'>{errorMessage}</span>}
       <p className='formPage__beforeLink-question'>
         { beforeLinkQuestion }
         <Link className='formPage__link' to={ link }>

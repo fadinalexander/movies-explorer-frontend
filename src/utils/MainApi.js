@@ -9,14 +9,15 @@ class MainApi {
     }
 
     _checkResult(res) {
-        if (res.ok)
-        {
-            return res.json()
-        }
-        return Promise.reject(`Упс... произошла ошибка ${res.status}`)
+        return res.json().then(data => {
+            if (res.ok) {
+                return data
+            } else {
+                return Promise.reject(data.message || `Упс... произошла ошибка ${res.status}`)
+            }
+        })
     }
-
-
+    
     register = ({ name, email, password }) => {
         return this._request(`${this._url}/signup`, {
             method: "POST",
@@ -41,6 +42,14 @@ class MainApi {
         })
     }
 
+    logout = () => {
+        return this._request(`${this._url}/signout`, {
+            method: 'POST',
+            headers: this._headers,
+            credentials: 'include',
+        })
+    }
+
     getUser() {
         return this._request(`${this._url}/users/me`, {
             method: 'GET',
@@ -49,13 +58,14 @@ class MainApi {
         })
     }
 
-    editUser(value) {
+    editUser(data) {
         return this._request(`${this._url}/users/me`, {
             method: 'PATCH',
             headers: this._headers,
             body: JSON.stringify({
-                name: value.name,
-                email: value.email
+                id: data.id,
+                name: data.name,
+                email: data.email
             }),
             credentials: 'include'
         })
@@ -100,8 +110,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-    // url: 'https://api.fadinhost.nomoredomainsicu.ru',
-    url: 'http://localhost:3000',
+    url: 'https://api.fadinhost.nomoredomainsicu.ru',
+    // url: 'http://localhost:3000',
     headers: {
         'Content-Type': 'application/json'
     }

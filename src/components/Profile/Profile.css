@@ -20,6 +20,7 @@
 }
 
 .profile__form-container {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -60,6 +61,27 @@
     cursor: pointer;
 }
 
+.profile__input_on-error {
+    border-bottom: 2px solid #EE3465;
+}
+
+.profile__tips {
+    position: absolute;
+    bottom: 5px;
+    font-size: 11px;
+    color: #ee3465;
+    margin-top: 8px;
+  }
+
+.profile__button-edit:disabled {
+    color: #666;
+    cursor:default;
+}
+
+.profile__button-edit:disabled:hover {
+opacity: 1;
+}
+
 .profile__button-edit:hover {
     opacity: .8;
 }
@@ -78,6 +100,15 @@
 
 .profile__button-exit:hover {
     opacity: .8;
+}
+
+.profile__message {
+    font-size: 11px;
+    color: green;
+    position: absolute;
+    margin-top: 270px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 
@@ -104,5 +135,4 @@
         font-size: 12px;
         line-height: 14.52px;
     }
-
 }

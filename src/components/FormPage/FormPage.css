@@ -28,12 +28,8 @@
     width: 100%;
 }
 
-.formPage__button-save-Link {
-    margin-top: auto;
-    text-decoration: none;
-}
-
 .formPage__button-save {
+    margin-top: auto;
     width: 100%;
     height: 45px;
     background-color: #4285f4;
@@ -45,6 +41,16 @@
     font-weight: 500;
     line-height: 16.94px;
     transition: all .2s ease-in-out;
+}
+
+.formPage__button-save:disabled {
+    background-color: #333;
+    cursor: default;
+    color: gray;
+}
+
+.formPage__button-save:disabled:hover {
+    opacity: 1;
 }
 
 .formPage__button-save:hover {
@@ -107,6 +113,32 @@
     opacity: .7;
 }
 
+.formPage__input_on-error {
+    border: 2px solid #EE3465;
+}
+
+.formPage__input_on-error:focus {
+    border: 2px solid #EE3465;
+}
+
+.formPage__tips {
+    font-size: 11px;
+    color: #ee3465;
+    margin-top: -15px;
+    text-align: right;
+    width: 100%;
+}
+
+.formPage__tips:last-of-type {
+    padding-top: 20px;
+}
+
+.formPage__error {
+    font-size: 11px;
+    position: absolute;
+    top: 500px;
+    color: red;
+}
 
 @media screen and (max-width: 420px) {
     .formPage {

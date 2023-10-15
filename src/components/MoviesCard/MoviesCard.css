@@ -60,6 +60,13 @@
     display: block;
 }
 
+.moviesCard__btn-save_delete {
+    background-image: url('../../images/delete_btn.svg');
+    width: 21px;
+    height: 21px;
+    display: block;
+}
+
 .moviesCard__btn-save:hover {
     opacity: 1;
 }
