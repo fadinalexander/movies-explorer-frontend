@@ -1,5 +1,7 @@
 # movies-explorer-frontend
 Дипломный проект
+ссылка на пулреквест
+https://github.com/fadinalexander/movies-explorer-frontend/pull/2
 
 Макет: figma - dark2
 
