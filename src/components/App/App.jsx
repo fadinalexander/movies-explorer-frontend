@@ -42,6 +42,8 @@ const App = () => {
   const [successedPatchedProfile, setSuccessedPatchedProfile] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
+  const [isTokenCheckComplete, setIsTokenCheckComplete] = useState(false)
+
   const getCards = () => {
     setIsLoading(true)
     return moviesApi.getMovies()
@@ -141,6 +143,7 @@ const App = () => {
       .register({ name, email, password })
       .then(() => {
         handleLogin({ email, password })
+        setIsLoggedIn(true)
         navigate('/movies')
       })
       .catch((err) => {
@@ -154,6 +157,7 @@ const App = () => {
 
   const handleLogin = ({ email, password }) => {
     setIsLoading(true)
+    setLoginErrorMessage('')
     mainApi
       .login(email, password)
       .then((res) => {
@@ -161,7 +165,8 @@ const App = () => {
         {
           setIsLoggedIn(true)
           setCurrentUser(res)
-          navigate('/movies', { replace: true })
+
+          // navigate('/movies', { replace: true })
         }
       })
       .catch((err) => {
@@ -232,13 +237,19 @@ const App = () => {
         console.log(err)
       })
       .finally(() => {
+        setIsTokenCheckComplete(true)
         setIsLoading(false)
       })
   }
 
   useEffect(() => {
+    setIsLoading(true)
     checkToken()
-  }, [])
+  }, [currentPath])
+
+  // if (!isTokenCheckComplete) {
+  //   return <Preloader/>
+  // }
 
   return (
     <CurrentUserContext.Provider value={ { currentUser } }>
@@ -285,6 +296,10 @@ const App = () => {
                       isLoggedIn={ isLoggedIn }
                       isLoading={ isLoading }
                       errorMessage={ loginErrorMessage }
+
+                      onLoginSuccess={() => {
+                        setIsLoggedIn(true)
+                        navigate('/movies')}}
                     />)
                   }
                 />

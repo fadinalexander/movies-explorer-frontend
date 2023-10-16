@@ -2,8 +2,17 @@ import React, { useEffect, useState } from 'react'
 
 import '../FormPage/FormPage.css'
 import FormPage from '../FormPage/FormPage'
+import { useNavigate } from 'react-router-dom'
 
-function Register({ handleRegister, errorMessage }) {
+function Register({ isLoggedIn, handleRegister, errorMessage }) {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate('/movies')
+        }
+    }, [isLoggedIn, navigate])
+
     const [formValue, setFormValue] = useState({
         name: "",
         email: "",

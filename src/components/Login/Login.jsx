@@ -2,14 +2,22 @@ import React, { useState, useEffect } from 'react'
 
 import FormPage from '../FormPage/FormPage'
 import '../FormPage/FormPage.css'
+import { useNavigate } from 'react-router-dom'
 
-function Login({ handleLogin, errorMessage}) {
+function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate('/movies')
+        }
+    }, [isLoggedIn, navigate])
 
     const [formValue, setFormValue] = useState({
         email: "",
         password: ""
     })
-
+    const { email, password } = formValue
     const [isEmailValid, setIsEmailValid] = useState(true)
     const [isPasswordValid, setIsPasswordValid] = useState(true)
     const [emailError, setEmailError] = useState('')
@@ -30,18 +38,17 @@ function Login({ handleLogin, errorMessage}) {
             setIsPasswordValid(value.trim().length >= 8 && value.trim().length <= 40)
             setPasswordError(value.trim().length >= 8 && value.trim().length <= 40 ? '' : 'Пароль должен содержать минимум 8 символов')
         }
-        setEmailError('')
-        setPasswordError('')
     }
 
     const handleSubmit = (evt) => {
         evt.preventDefault()
-        handleLogin({ email: formValue.email, password: formValue.password })
+        handleLogin({ email, password })
+        onLoginSuccess()
     }
 
     useEffect(() => {
         setIsSubmitDisabled(!(isEmailValid && isPasswordValid))
-    }, [isEmailValid, isPasswordValid])
+    }, [isEmailValid, isPasswordValid, formValue.email, formValue.password])
 
     return (
         <FormPage
@@ -56,7 +63,6 @@ function Login({ handleLogin, errorMessage}) {
             <label className='label'>
                 E-mail
                 <input
-                    autoComplete='off'
                     id='input-email'
                     name='email'
                     required
@@ -70,7 +76,6 @@ function Login({ handleLogin, errorMessage}) {
             <label className='label'>
                 Пароль
                 <input
-                    autoComplete='new-password'
                     id='input-password'
                     name='password'
                     required
