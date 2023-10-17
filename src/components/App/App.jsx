@@ -47,10 +47,10 @@ const App = () => {
   const handleRegister = ({ name, email, password }) => {
     setIsLoading(true)
     setRegisterErrorMessage('')
-    mainApi
+    return mainApi
       .register({ name, email, password })
-      .then(() => {
-        handleLogin({ email, password })
+      .then(async() => {
+       await handleLogin({ email, password })
         setIsLoggedIn(true)
         
         //добавил для очистки
