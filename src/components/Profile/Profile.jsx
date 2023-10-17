@@ -54,7 +54,7 @@ const Profile = ({ isLoggedIn, handleLogout, handleUpdateUser, successedPatchedP
         handleUpdateUser({ name, email })
     }
 
-    const isSubmitDisabled = !isEdited || !!nameError || !!emailError
+    const isSubmitDisabled = !isEdited || !!nameError || !!emailError || (name === currentUser.name && email === currentUser.email)
 
     return (
         <>

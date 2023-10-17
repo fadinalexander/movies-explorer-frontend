@@ -40,8 +40,8 @@ function Login({ handleLogin, errorMessage }) {
     }
 
     useEffect(() => {
-        setIsSubmitDisabled(!(isEmailValid && isPasswordValid))
-    }, [isEmailValid, isPasswordValid, formValue.email, formValue.password])
+        setIsSubmitDisabled(!(isEmailValid && isPasswordValid && email.trim() !== '' && password.trim() !== ''))
+    }, [isEmailValid, isPasswordValid, email, password])
 
     return (
         <FormPage

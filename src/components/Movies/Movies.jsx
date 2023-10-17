@@ -92,9 +92,7 @@ const Movies = ({ isLoggedIn, movies, savedMovies, onSave, getMovies, isLiked, s
         )
         setSearchResults(filteredResults)
         localStorage.setItem('searchResults', JSON.stringify(filteredResults))
-        setTimeout(() => {
-            setIsLoading(false)
-        }, 1000)
+        setIsLoading(false)
     }
 
     const handleSearch = async (query, isShortFilm) => {
@@ -122,6 +120,10 @@ const Movies = ({ isLoggedIn, movies, savedMovies, onSave, getMovies, isLiked, s
             setIsLoading(false)
         }, 1000)
     }
+
+    useEffect(() => {
+        filterMovies(query, isShortFilm)
+    }, [movies, query, isShortFilm])
     
     return (
         <>

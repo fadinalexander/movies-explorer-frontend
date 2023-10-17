@@ -50,7 +50,8 @@
 }
 
 .profile__button-edit {
-    margin-top: 220px;
+    margin: 220px auto 0;
+    width: fit-content;
     font-size: 13px;
     font-weight: 400;
     line-height: 15.73px;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
 import CurrentUserContext from '../../contexts/CurrentUserContext'
@@ -263,25 +263,29 @@ const App = () => {
 
                 <Route
                   path='/signup'
-                  element={
-                    (<Register
-                      handleRegister={ handleRegister }
-                      isLoggedIn={ isLoggedIn }
-                      isLoading={ isLoading }
-                      errorMessage={ registerErrorMessage }
-                    />)
+                  element={ isLoggedIn
+                    ? <Navigate to='/movies' />
+                    : (
+                      <Register
+                        handleRegister={ handleRegister }
+                        isLoggedIn={ isLoggedIn }
+                        isLoading={ isLoading }
+                        errorMessage={ registerErrorMessage }
+                      />)
                   }
                 />
 
                 <Route
                   path='/signin'
-                  element={
-                    (<Login
-                      handleLogin={ handleLogin }
-                      isLoggedIn={ isLoggedIn }
-                      isLoading={ isLoading }
-                      errorMessage={ loginErrorMessage }
-                    />)
+                  element={ isLoggedIn
+                    ? <Navigate to='/movies' />
+                    : (
+                      <Login
+                        handleLogin={ handleLogin }
+                        isLoggedIn={ isLoggedIn }
+                        isLoading={ isLoading }
+                        errorMessage={ loginErrorMessage }
+                      />)
                   }
                 />
 
