@@ -3,15 +3,19 @@ import React, { useState, useEffect } from 'react'
 import FormPage from '../FormPage/FormPage'
 import '../FormPage/FormPage.css'
 import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
-function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
+function Login({ isLoggedIn, handleLogin, errorMessage }) {
+    // function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
+
     const navigate = useNavigate()
 
-    useEffect(() => {
-        if (isLoggedIn) {
-            navigate('/movies')
-        }
-    }, [isLoggedIn, navigate])
+    // useEffect(() => {
+    //     if (isLoggedIn)
+    //     {
+    //         navigate('/movies')
+    //     }
+    // }, [isLoggedIn, navigate])
 
     const [formValue, setFormValue] = useState({
         email: "",
@@ -31,10 +35,12 @@ function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
             [name]: value
         })
 
-        if (name === 'email') {
+        if (name === 'email')
+        {
             setIsEmailValid(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value.trim()))
             setEmailError(/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value.trim()) ? '' : 'Невалидный E-mail')
-        } else if (name === 'password') {
+        } else if (name === 'password')
+        {
             setIsPasswordValid(value.trim().length >= 8 && value.trim().length <= 40)
             setPasswordError(value.trim().length >= 8 && value.trim().length <= 40 ? '' : 'Пароль должен содержать минимум 8 символов')
         }
@@ -43,7 +49,11 @@ function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
     const handleSubmit = (evt) => {
         evt.preventDefault()
         handleLogin({ email, password })
-        onLoginSuccess()
+        // navigate('/movies')
+
+    
+
+        // onLoginSuccess()
     }
 
     useEffect(() => {
@@ -57,8 +67,8 @@ function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
             beforeLinkQuestion='Ещё не зарегистрированы?'
             link='/signup'
             linkText='Регистрация'
-            handleSubmit={handleSubmit}
-            errorMessage={errorMessage}
+            handleSubmit={ handleSubmit }
+            errorMessage={ errorMessage }
         >
             <label className='label'>
                 E-mail
@@ -69,7 +79,7 @@ function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
                     className={ `form__input ${!isEmailValid ? 'formPage__input_on-error' : ''}` }
                     type='email'
                     placeholder='Ваш email'
-                    onChange={handleChange}
+                    onChange={ handleChange }
                 />
             </label>
             { emailError && <span className='formPage__tips'>{ emailError }</span> }
@@ -84,7 +94,7 @@ function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
                     minLength='8'
                     maxLength='40'
                     placeholder='Пароль'
-                    onChange={handleChange}
+                    onChange={ handleChange }
                 />
             </label>
             { passwordError && <span className='formPage__tips'>{ passwordError }</span> }

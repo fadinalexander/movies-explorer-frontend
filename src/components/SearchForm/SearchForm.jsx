@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './SearchForm.css'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 
 const SearchForm = ({ query, setQuery, isShortFilm, setIsShortFilm, onSearch, onFilter }) => {
+
+    //добавил для поискового запроса
+    const [hasSearched, setHasSearched] = useState(false)
+    useEffect(() => {
+        const searched = localStorage.getItem('hasSearched') === true
+        setHasSearched(searched)
+        if (searched) {
+            const savedQuery = localStorage.getItem('query')
+            if (savedQuery) {
+                setQuery(savedQuery)
+            }
+        }
+    }, [])
+
 
     const handleInputChange = (evt) => {
         setQuery(evt.target.value)
@@ -17,6 +31,12 @@ const SearchForm = ({ query, setQuery, isShortFilm, setIsShortFilm, onSearch, on
     const handleSubmit = (evt) => {
         evt.preventDefault()
         onSearch(query, isShortFilm)
+
+            //добавил для поискового запроса
+            if (!hasSearched) {
+                localStorage.setItem('hasSearched', 'true')
+            }
+            localStorage.setItem('query', query)
     }
 
     const handleEnterBtn = (evt) => {

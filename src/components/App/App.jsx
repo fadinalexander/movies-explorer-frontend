@@ -42,7 +42,54 @@ const App = () => {
   const [successedPatchedProfile, setSuccessedPatchedProfile] = useState('')
   const [errorMessage, setErrorMessage] = useState('')
 
-  const [isTokenCheckComplete, setIsTokenCheckComplete] = useState(false)
+  // const [isTokenCheckComplete, setIsTokenCheckComplete] = useState(false)
+
+  const handleRegister = ({ name, email, password }) => {
+    setIsLoading(true)
+    setRegisterErrorMessage('')
+    mainApi
+      .register({ name, email, password })
+      .then(() => {
+        handleLogin({ email, password })
+        setIsLoggedIn(true)
+        
+        //добавил для очистки
+        setSavedMovies([])
+
+        navigate('/movies')
+      })
+      .catch((err) => {
+        console.log(err.message)
+        setRegisterErrorMessage(err instanceof Error ? err.message : err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  const handleLogin = ({ email, password }) => {
+    setIsLoading(true)
+    setLoginErrorMessage('')
+    return mainApi 
+      .login(email, password)
+      .then((res) => {
+        
+        //добавил для отображения результатов поиска
+        localStorage.setItem('hasSearched', 'true')
+
+          setIsLoggedIn(true)
+          setCurrentUser(res)
+          navigate('/movies', { replace: true })
+
+      })
+      .catch((err) => {
+        console.log(err)
+        setLoginErrorMessage(err instanceof Error ? err.message : err)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
 
   const getCards = () => {
     setIsLoading(true)
@@ -116,67 +163,61 @@ const App = () => {
       })
   }
 
-  useEffect(() => {
-    if (!isLoggedIn) return
-    mainApi
-      .getUser()
-      .then((userData) => {
-        setCurrentUser(userData)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-    mainApi
-      .getSavedMovies()
-      .then((movies) => {
-        setSavedMovies(movies.reverse())
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [isLoggedIn])
+  
 
-  const handleRegister = ({ name, email, password }) => {
-    setIsLoading(true)
-    setRegisterErrorMessage('')
-    mainApi
-      .register({ name, email, password })
-      .then(() => {
-        handleLogin({ email, password })
-        setIsLoggedIn(true)
-        navigate('/movies')
-      })
-      .catch((err) => {
-        console.log(err.message)
-        setRegisterErrorMessage(err instanceof Error ? err.message : err)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }
+  //этот эффект был добавлен - вроде как помог обновлять данные пользователей, хотя безнего тоже работате
+  // useEffect(() => {
+  //   if (!isLoggedIn) return
+  //   getSavedMovies()
+  // }, [isLoggedIn])
 
-  const handleLogin = ({ email, password }) => {
-    setIsLoading(true)
-    setLoginErrorMessage('')
-    mainApi
-      .login(email, password)
-      .then((res) => {
-        if (res.token)
-        {
-          setIsLoggedIn(true)
-          setCurrentUser(res)
 
-          // navigate('/movies', { replace: true })
-        }
-      })
-      .catch((err) => {
-        console.log(err)
-        setLoginErrorMessage(err instanceof Error ? err.message : err)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }
+  // const handleRegister = ({ name, email, password }) => {
+  //   setIsLoading(true)
+  //   setRegisterErrorMessage('')
+  //   mainApi
+  //     .register({ name, email, password })
+  //     .then(() => {
+  //       handleLogin({ email, password })
+  //       setIsLoggedIn(true)
+
+  //       //добавил для очистки
+  //       setSavedMovies([])
+
+  //       navigate('/movies')
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message)
+  //       setRegisterErrorMessage(err instanceof Error ? err.message : err)
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false)
+  //     })
+  // }
+
+  // const handleLogin = ({ email, password }) => {
+  //   setIsLoading(true)
+  //   setLoginErrorMessage('')
+  //   return mainApi 
+  //     .login(email, password)
+  //     .then((res) => {
+        
+  //       //добавил для отображения результатов поиска
+  //       localStorage.setItem('hasSearched', 'true')
+
+  //         setIsLoggedIn(true)
+  //         setCurrentUser(res)
+  //         navigate('/movies', { replace: true })
+
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //       setLoginErrorMessage(err instanceof Error ? err.message : err)
+  //     })
+  //     .finally(() => {
+  //       setIsLoading(false)
+  //     })
+  // }
 
   const handleLogout = () => {
     mainApi
@@ -185,6 +226,10 @@ const App = () => {
         console.log(data.message)
         setIsLoggedIn(false)
         setCurrentUser({})
+        
+        //добавил для очистки
+        setSavedMovies([])
+
         navigate('/')
       })
       .catch((err) => {
@@ -231,21 +276,45 @@ const App = () => {
         setIsLoggedIn(true)
         setCurrentUser(res)
         navigate(currentPath, { replace: true })
+
       })
       .catch((err) => {
         setIsLoggedIn(false)
         console.log(err)
       })
       .finally(() => {
-        setIsTokenCheckComplete(true)
+        // setIsTokenCheckComplete(true)
         setIsLoading(false)
       })
   }
 
   useEffect(() => {
-    setIsLoading(true)
     checkToken()
-  }, [currentPath])
+  }, [])
+
+  useEffect(() => {
+    if (!isLoggedIn) return
+    mainApi
+      .getUser()
+      .then((userData) => {
+        setCurrentUser(userData)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    mainApi
+      .getSavedMovies()
+      .then((movies) => {
+        setSavedMovies(movies.reverse())
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [isLoggedIn])
+  // useEffect(() => {
+  //   setIsLoading(true)
+  //   checkToken()
+  // }, [currentPath])
 
   // if (!isTokenCheckComplete) {
   //   return <Preloader/>
@@ -297,9 +366,10 @@ const App = () => {
                       isLoading={ isLoading }
                       errorMessage={ loginErrorMessage }
 
-                      onLoginSuccess={() => {
-                        setIsLoggedIn(true)
-                        navigate('/movies')}}
+                      // onLoginSuccess={ () => {
+                      //   setIsLoggedIn(true)
+                      //   navigate('/movies')
+                      // } }
                     />)
                   }
                 />
@@ -350,7 +420,7 @@ const App = () => {
                   }
                 />
               </Routes>
-              
+
             )
           }
         </div>

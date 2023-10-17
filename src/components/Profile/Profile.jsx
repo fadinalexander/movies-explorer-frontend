@@ -31,8 +31,8 @@ const Profile = ({ isLoggedIn, handleLogout, handleUpdateUser, successedPatchedP
 
         if (evt.target.value.trim().length < 2 || evt.target.value.trim().length > 40) {
             setNameError('Имя должно содержать от 2 до 40 символов')
-        } else if (!(/^[A-Za-zА-Яа-яЁё\s]+$/).test(evt.target.value.trim())) {
-            setNameError('Имя может содержать только буквы')
+        } else if (!(/^[A-Za-zА-Яа-яЁё0-9\s]+$/).test(evt.target.value.trim())) {
+            setNameError('Имя может содержать только буквы и цифры')
         } else {
             setNameError('')
         }
