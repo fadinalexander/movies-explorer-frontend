@@ -1,0 +1,48 @@
+.burgerPopup {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.burgerPopup__btn-burger {
+    background: url(../../images/burger_icon.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    border: none;
+    width: 44px;
+    height: 44px;
+}
+
+.burgerPopup__overlay {
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .3);
+    display: flex;
+    justify-content: right;
+}
+
+.burgerPopup__container {
+    position: relative;
+    display: grid;
+    grid-template-rows: 30px 1fr 1fr;
+    background-color: #202020;
+    height: 100%;
+    width: 520px;
+}
+
+.burgerPopup__btn-close {
+    position: absolute;
+    top: 22.44px;
+    right: 22.44px;
+    background: url(../../images/burgerPopup-btn-close.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 22px;
+    height: 22px;
+    border: none;
+    cursor: pointer;
+}

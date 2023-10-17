@@ -1,0 +1,7 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts.css);
+
+html {
+    scroll-behavior: smooth;
+    background-color: #202020;
+}

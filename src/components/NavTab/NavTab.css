@@ -1,0 +1,35 @@
+.navTab {
+    display: flex;
+    margin-bottom: 30px;
+    gap: 10px;
+}
+
+.navTab__link {
+    width: 96px;
+    text-align: center;
+    color: #fff;
+    padding: 10px 0;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 16px;
+    background-color: #303030;
+    transition: all 0.2s ease-in-out;
+}
+
+.navTab__link:hover {
+    opacity: .8;
+}
+
+@media screen and (max-width: 460px) {
+    .navTab {
+        margin-bottom: 17px;
+        gap: 6px;
+    }
+
+    .navTab__link {
+        width: 82px;
+        border-radius: 6px;
+    }
+}

@@ -1,0 +1,33 @@
+.movies {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.movies__button-container {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0 80px;
+}
+
+.movies__button-else {
+    height: 36px;
+    width: 320px;
+    background: inherit;
+    border-radius: 6px;
+    border-width: 1px;
+    border-color: #424242;
+    border-style: solid;
+    color: #fff;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14.52px;
+}
+
+@media screen and (max-width: 360px) {
+    .movies__button-else {
+        width: 240px;
+    }
+}
