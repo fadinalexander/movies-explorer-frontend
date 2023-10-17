@@ -2,20 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import FormPage from '../FormPage/FormPage'
 import '../FormPage/FormPage.css'
-import { useNavigate } from 'react-router-dom'
-// import { useNavigate } from 'react-router-dom'
 
-function Login({ isLoggedIn, handleLogin, errorMessage }) {
-    // function Login({ isLoggedIn, handleLogin, errorMessage, onLoginSuccess}) {
-
-    const navigate = useNavigate()
-
-    // useEffect(() => {
-    //     if (isLoggedIn)
-    //     {
-    //         navigate('/movies')
-    //     }
-    // }, [isLoggedIn, navigate])
+function Login({ handleLogin, errorMessage }) {
 
     const [formValue, setFormValue] = useState({
         email: "",
@@ -49,11 +37,6 @@ function Login({ isLoggedIn, handleLogin, errorMessage }) {
     const handleSubmit = (evt) => {
         evt.preventDefault()
         handleLogin({ email, password })
-        // navigate('/movies')
-
-    
-
-        // onLoginSuccess()
     }
 
     useEffect(() => {

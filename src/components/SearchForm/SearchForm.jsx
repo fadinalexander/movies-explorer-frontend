@@ -1,25 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import './SearchForm.css'
 import FilterCheckbox from '../FilterCheckbox/FilterCheckbox'
 
 const SearchForm = ({ query, setQuery, isShortFilm, setIsShortFilm, onSearch, onFilter }) => {
-    // const SearchForm = ({ query, setQuery, isShortFilm, setIsShortFilm, onSearch, onFilter, userId }) => {
-
-
-    // //добавил для поискового запроса
-    // const [hasSearched, setHasSearched] = useState(false)
-    // useEffect(() => {
-    //     const searched = localStorage.getItem('hasSearched_${userId}') === true
-    //     setHasSearched(searched)
-    //     if (searched) {
-    //         const savedQuery = localStorage.getItem('query_${userId}')
-    //         if (savedQuery) {
-    //             setQuery(savedQuery)
-    //         }
-    //     }
-    // }, [userId])
-
 
     const handleInputChange = (evt) => {
         setQuery(evt.target.value)
@@ -33,16 +17,11 @@ const SearchForm = ({ query, setQuery, isShortFilm, setIsShortFilm, onSearch, on
     const handleSubmit = (evt) => {
         evt.preventDefault()
         onSearch(query, isShortFilm)
-
-            // //добавил для поискового запроса
-            // if (!hasSearched) {
-            //     localStorage.setItem('hasSearched_${_${userId}}', 'true')
-            // }
-            // localStorage.setItem('query_${_${userId}}', query)
     }
 
     const handleEnterBtn = (evt) => {
-        if (evt.key === 'Enter') {
+        if (evt.key === 'Enter')
+        {
             handleSubmit(evt)
         }
     }
@@ -61,16 +40,16 @@ const SearchForm = ({ query, setQuery, isShortFilm, setIsShortFilm, onSearch, on
                     placeholder='Фильм'
                     value={ query }
                     onChange={ handleInputChange }
-                    onKeyDown={handleEnterBtn}
+                    onKeyDown={ handleEnterBtn }
                 >
                 </input>
                 <button className='searchForm__btn' type='submit' alt='Кнопка'></button>
             </form>
             <FilterCheckbox
-            onChange={handleShortFilmToogle}
-            checked={isShortFilm}
+                onChange={ handleShortFilmToogle }
+                checked={ isShortFilm }
             />
-            <hr className='searchForm__hr'/>
+            <hr className='searchForm__hr' />
         </section>
     )
 }
