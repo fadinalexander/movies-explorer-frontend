@@ -152,16 +152,16 @@ const App = () => {
       })
   }
 
-  function getSavedMovies() {
-    return mainApi
-      .getSavedMovies()
-      .then((movies) => {
-        setSavedMovies(movies)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }
+  // function getSavedMovies() {
+  //   return mainApi
+  //     .getSavedMovies()
+  //     .then((movies) => {
+  //       setSavedMovies(movies)
+  //     })
+  //     .catch((err) => {
+  //       console.log(err)
+  //     })
+  // }
 
   
 
@@ -224,6 +224,7 @@ const App = () => {
       .logout()
       .then((data) => {
         console.log(data.message)
+        localStorage.clear();
         setIsLoggedIn(false)
         setCurrentUser({})
         
